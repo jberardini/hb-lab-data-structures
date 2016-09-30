@@ -147,6 +147,15 @@ def all_students_tuple_list(filename):
     """
 
     student_list = []
+    for entry in open(filename):
+        entry = entry.rstrip()
+        entry = entry.split("|")
+        full_name = entry[0] + " " + entry[1]
+        house = entry[2]
+        professor = entry[3]
+        cohort = entry[4]
+        if house:
+            student_list.append((full_name, house, professor, cohort))
 
     # Code goes here
 
@@ -161,8 +170,12 @@ def find_cohort_by_student_name(student_list):
     student's cohort, or returns "Student not found." when appropriate. """
 
     # Code goes here
+    user_input = raw_input("Enter a student's full name to lookup cohort > ")
+    answer = [item for item in student_list if user_input in item]
 
-    return "Student not found."
+
+
+    return answer
 
 
 ##########################################################################################
@@ -183,6 +196,8 @@ def find_name_duplicates(filename):
     duplicate_names = set()
 
     # Code goes here
+    
+
 
     return duplicate_names
 
@@ -217,11 +232,11 @@ def find_house_members_by_student_name(student_list):
 
 # Here is some useful code to run these functions!
 
-print unique_houses("cohort_data.txt")
-print sort_by_cohort("cohort_data.txt")
-print students_by_house("cohort_data.txt")
-# all_students_data = all_students_tuple_list("cohort_data.txt")
-# print all_students_data
-# find_cohort_by_student_name(all_students_data)
+#print unique_houses("cohort_data.txt")
+#print sort_by_cohort("cohort_data.txt")
+#print students_by_house("cohort_data.txt")
+#all_students_data = all_students_tuple_list("cohort_data.txt")
+#print all_students_data
+find_cohort_by_student_name(all_students_data)
 # print find_name_duplicates("cohort_data.txt")
 # find_house_members_by_student_name(all_students_data)
