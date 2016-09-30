@@ -108,7 +108,28 @@ def students_by_house(filename):
     instructors = []
 
     # Code goes here
-    
+    for entry in open(filename):
+        entry = entry.rstrip()
+        entry = entry.split("|")
+        full_name = entry[1] + ", " + entry[0]
+        if entry[2] == "Gryffindor":
+            gryffindor.append(full_name)
+        elif entry[2] == "Slytherin":
+            slytherin.append(full_name)
+        elif entry[2] == "Hufflepuff":
+            hufflepuff.append(full_name)
+        elif entry[2] == "Ravenclaw":
+            ravenclaw.append(full_name)
+        elif entry[4] == "G":
+            ghosts.append(full_name) 
+        elif entry[4] == "I":
+            instructors.append(full_name) 
+
+    houses = [gryffindor, ravenclaw, slytherin, hufflepuff, ghosts, instructors]
+
+    for house in houses:
+        house.sort()
+        all_students.append(house)
 
     return all_students
 
@@ -198,7 +219,7 @@ def find_house_members_by_student_name(student_list):
 
 print unique_houses("cohort_data.txt")
 print sort_by_cohort("cohort_data.txt")
-# print students_by_house("cohort_data.txt")
+print students_by_house("cohort_data.txt")
 # all_students_data = all_students_tuple_list("cohort_data.txt")
 # print all_students_data
 # find_cohort_by_student_name(all_students_data)
